@@ -13,3 +13,25 @@ body,
 canvas{
     touch-action: none;
 }
+
+.welcome-text{
+    background-color: black;
+    color: white;
+    padding: 1rem;
+    border-radius: 2rem;
+    user-select: none;
+}
+
+.container{
+    position: absolute;
+    width: 100vw;
+    height: 30vh;
+    z-index: 1;
+}
+
+#button-click {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
