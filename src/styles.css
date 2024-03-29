@@ -14,9 +14,3 @@ canvas{
     touch-action: none;
 }
 
-.container{
-    position: absolute;
-    width: 100vw;
-    height: 30vh;
-    z-index: 1;
-}
