@@ -52,6 +52,6 @@
 }
 
 .button-start > button:disabled {
-    background-color: #500000;
+    background-color: #fde6e7;
     cursor: not-allowed;
 }
