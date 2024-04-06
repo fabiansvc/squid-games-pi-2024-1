@@ -8,11 +8,11 @@ import WelcomeView from "./layouts/WelcomeView";
 const root = createRoot(document.getElementById("root"));
 
 root.render(<>
-    <WelcomeView />
+    {/* <WelcomeView /> */}
     <Canvas
         camera={
             {
-                position: [0, 1.5, 0],
+                position: [0, 1.5, -90],
                 rotation: [0, 0, 0]
             }
         }
