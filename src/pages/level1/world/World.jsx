@@ -1,10 +1,8 @@
 import { useGLTF } from "@react-three/drei"
 import { CuboidCollider, CylinderCollider, RigidBody } from "@react-three/rapier"
-import { useRef } from "react";
 
 export default function World(props) {
     const { nodes, materials } = useGLTF("/assets/models/world/WorldSquidGames.glb")
-    const treeRef = useRef()
 
     return (
         <group {...props} dispose={null}>
@@ -26,7 +24,7 @@ export default function World(props) {
                         </mesh>
                 </RigidBody>
                 <RigidBody colliders={false} type="fixed" >
-                    <mesh ref={treeRef} onClick={(e) => e.stopPropagation()} geometry={nodes.Tree.geometry} material={materials.treeMaterial} position={[0, 0, -96]} />
+                    <mesh onClick={(e) => e.stopPropagation()} geometry={nodes.Tree.geometry} material={materials.treeMaterial} position={[0, 0, -96]} />
                     <CylinderCollider args={[1, 0.5]} position={[0, 1, -96]} />
                 </RigidBody>
             </group>
