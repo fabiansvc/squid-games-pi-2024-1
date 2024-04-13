@@ -1,8 +1,11 @@
+import { AvatarProvider } from "./context/AvatarContext";
 import RoutesSquidGames from "./routes/RoutesSquidGames"
 
 const Experience = () => {
     return (
-        <RoutesSquidGames/>
+        <AvatarProvider>
+            <RoutesSquidGames />
+        </AvatarProvider>
     )
 }
 
