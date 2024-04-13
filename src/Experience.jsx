@@ -1,6 +1,8 @@
+import RoutesSquidGames from "./routes/RoutesSquidGames"
+
 const Experience = () => {
     return (
-        null
+        <RoutesSquidGames/>
     )
 }
 
