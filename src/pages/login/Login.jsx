@@ -1,6 +1,5 @@
-import "./stylesWelcomeView.css"
-
-const WelcomeView = () => {
+import "./stylesLogin.css";
+export default function Login() {
     const onHandleButtonStart = () => {
         console.log("Iniciar Juego");
     }
@@ -18,6 +17,5 @@ const WelcomeView = () => {
             </div>
         </div>
     );
-}
 
-export default WelcomeView;
+}
