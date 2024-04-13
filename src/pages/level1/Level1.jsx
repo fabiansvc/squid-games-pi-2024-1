@@ -12,6 +12,7 @@ import World from "./world/World";
 import Controls from "./controls/Controls";
 import Avatar from "./characters/avatar/Avatar";
 import useMovements from "../../utils/key-movements";
+import Ecctrl, { EcctrlAnimation } from "ecctrl";
 
 export default function Level1() {
     const map = useMovements();
@@ -27,11 +28,19 @@ export default function Level1() {
                 <Suspense fallback={null}>
                     <Lights />
                     <Environments />
-                    <Physics debug={true}>
+                    <Physics debug={false}>
                         <World />
                         <Girl />
                         <RedMen />
-                        <Avatar />
+                        <Ecctrl
+                            camInitDis={-2}
+                            camMaxDis={-2}
+                            maxVelLimit={5} 
+                            jumpVel={4} 
+                            position={[0,10,0]}
+                        >
+                            <Avatar />
+                        </Ecctrl>
                     </Physics>
                     <WelcomeText position={[0, 1, -2]} />
                 </Suspense>
