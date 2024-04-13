@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'FontSquidGames';
-    src: url('../../public/assets/fonts/FontSquidGames.ttf') format('truetype');
+    src: url('../../../public/assets/fonts/FontSquidGames.ttf') format('truetype');
 }
 
 .container{
@@ -11,8 +11,6 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(255, 255, 255, 0.9);
-    position: absolute;
-    z-index: 1;
     user-select: none;
 }
 
