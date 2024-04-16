@@ -20,11 +20,9 @@ export default function Level1() {
     return (
         <KeyboardControls map={map} >
             <Canvas
-                camera={{
-                    position: [0, 1, 0]
-                }}
+                shadows={true}
             >
-                {/* <Perf position="top-left" /> */}
+                <Perf position="top-left" />
                 <Suspense fallback={null}>
                     <Lights />
                     <Environments />
