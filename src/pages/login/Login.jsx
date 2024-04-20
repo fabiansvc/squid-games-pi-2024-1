@@ -1,7 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import "./stylesLogin.css";
 export default function Login() {
+
+    const navigate = useNavigate();
+
     const onHandleButtonStart = () => {
-        console.log("Iniciar Juego");
+        navigate('/level1', {
+            state: {
+                firstTime: true
+            }
+        })
     }
 
     return (
