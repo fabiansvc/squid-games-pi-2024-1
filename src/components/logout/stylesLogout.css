@@ -1,0 +1,10 @@
+.button-logout{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    position: absolute;
+    z-index: 1;
+}
+.button-logout button {
+    cursor: pointer;
+}
