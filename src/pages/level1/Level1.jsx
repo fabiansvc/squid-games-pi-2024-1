@@ -1,42 +1,42 @@
 import { Perf } from "r3f-perf";
-import { KeyboardControls, OrbitControls } from "@react-three/drei";
+import { KeyboardControls, Loader } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect } from "react";
 import WelcomeText from "./abstractions/WelcomeText";
 import RedMen from "./characters/redMen/RedMen";
 import Lights from "./lights/Lights";
 import Environments from "./staging/Environments";
-import { Girl } from "./characters/girl/Girl";
+import Girl from "./characters/girl/Girl";
+import Player1 from "./characters/players/Player1";
 import { Canvas } from "@react-three/fiber";
 import World from "./world/World";
 import Controls from "./controls/Controls";
 import useMovements from "../../utils/key-movements";
-import { useLocation } from "react-router-dom";
 import { socket } from "../../socket/socket-manager";
-import Player1 from "./characters/avatar/Player1";
-import { useAtom } from "jotai";
 import { Players, playersAtom } from "../../components/Players";
-import { Player2 } from "./characters/avatar/Player2";
 import { useAuth } from "../../context/AuthContext";
 import Logout from "../../components/logout/Logout";
 import { createUser, readUser } from "../../db/users-collection";
+import { useAtom } from "jotai";
+import { EcctrlJoystick } from "ecctrl";
 
 export default function Level1() {
-    const location = useLocation();
-    const [players] = useAtom(playersAtom)
     const map = useMovements();
-
     const auth = useAuth()
-
+    const [players] = useAtom(playersAtom);
+    /**
+     * Save the user data in the DB.
+     * @param {*} valuesUser 
+     */
     const saveDataUser = async (valuesUser) => {
-        await createUser(valuesUser)
+        const {success} = await readUser(valuesUser.email)
+        if (!success)
+            await createUser(valuesUser)
     }
-
-    const readDataUser = async (email) => {
-        await readUser(email).then((res) => console.log(res))
-        .catch((error) => console.error(error))
-    }
-
+    /**
+     * When userLogged is changed call saveDataUser to save the user in the DB.
+     * @see saveDataUser
+     */
     useEffect(() => {
         if (auth.userLogged) {
             const { displayName, email } = auth.userLogged
@@ -45,39 +45,35 @@ export default function Level1() {
                 displayName: displayName,
                 email: email,
             })
-
-            readDataUser(email)
-                
-
         }
     }, [auth.userLogged])
-
-
+    /**
+     * Emit to the server that the player is connected.
+     */
     useEffect(() => {
         socket.emit("player-connected")
     }, [])
 
     return (
-        <KeyboardControls map={map} >
-            <Players />
-            <Logout />
-            <Canvas
-                shadows={true}
-            >
-                {/* <Perf position="top-left" /> */}
-                <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
+            <KeyboardControls map={map} >
+                <Players />
+                <Logout />
+                <EcctrlJoystick />
+                <Canvas shadows={true}>
+                    {/* <Perf position="top-left" /> */}
                     <Lights />
                     <Environments />
                     <Physics debug={false}>
                         <World />
                         <Girl />
                         <RedMen />
+                        <Player1/>
                     </Physics>
                     <WelcomeText position={[0, 1, -2]} />
-                </Suspense>
-                <Controls />
-            </Canvas>
-        </KeyboardControls>
-
+                    <Controls />
+                </Canvas>
+            </KeyboardControls>
+        </Suspense>
     )
 }

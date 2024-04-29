@@ -1,10 +1,15 @@
 import socketIOClient from 'socket.io-client';
 
-//t const socket = socketIOClient('http://localhost:5000');
-export const socket = socketIOClient('https://squid-games-pi-2024-1-websockets.onrender.com/');
+/**
+ * Socket connection
+ */
+export const socket = socketIOClient(process.env.REACT_APP_SOCKET_URL_LOCALHOST);
+//export const socket = socketIOClient(process.env.REACT_APP_SOCKET_URL_DEPLOY_CLIENT);
 
+/**
+ * Disconnect to the socket server
+ */
 export const disconnectSocket = () => {
-    console.log('Disconnecting socket...');
     socket.disconnect();
 }
 

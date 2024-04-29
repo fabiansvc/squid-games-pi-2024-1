@@ -2,7 +2,7 @@ import React from 'react'
 import { useGLTF } from '@react-three/drei'
 import { CuboidCollider, RigidBody } from '@react-three/rapier'
 
-export function Girl() {
+export default function Girl() {
   const { nodes, materials } = useGLTF('/assets/models/girl/Girl.glb')
 
   return (

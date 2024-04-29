@@ -6,12 +6,12 @@ export default function Logout() {
     const auth = useAuth()
     const navigate = useNavigate()
 
-    const onHandleButtonLogout = async () =>{
+    const onHandleButtonLogout = async () => {
         await auth.logout()
-            .then((res)=>navigate("/"))
-            .catch((error)=>console.error(error))
+            .then((res) => navigate("/"))
+            .catch((error) => console.error(error))
     }
-    return(
+    return (
         <div className="button-logout">
             <button onClick={onHandleButtonLogout}> Logout </button>
         </div>
