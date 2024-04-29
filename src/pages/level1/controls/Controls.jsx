@@ -10,7 +10,6 @@ export default function Controls() {
   const [runSound] = useState(new Audio("/assets/sounds/run.wav"))
   const [play, setPlay] = useState(false)
 
-
   useEffect(() => {
     const unsubscribe = sub(
       (state) => state.forward || state.backward || state.leftward || state.rightward,

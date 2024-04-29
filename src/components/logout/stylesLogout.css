@@ -5,6 +5,7 @@
     position: absolute;
     z-index: 1;
 }
+
 .button-logout button {
     cursor: pointer;
 }
